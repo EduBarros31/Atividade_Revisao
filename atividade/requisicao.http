@@ -1,0 +1,35 @@
+### Teste para listar chamados
+GET http://localhost:3000/chamados
+Content-Type: application/json
+
+
+
+### Teste para criar chamados
+POST http://localhost:3000/chamados
+Content-Type: application/json
+
+
+{
+
+ "id": "2",
+ "solicitante":"Maria",
+ "problema": "Sem sinal de rede",
+ "prioridade": "baixa",
+ "status": "aberto"
+}
+
+
+
+###
+
+###Test para editar Chamados
+PUT http://localhost:3000/chamados
+Content-type: application/json
+{
+  
+
+
+
+
+
+}
