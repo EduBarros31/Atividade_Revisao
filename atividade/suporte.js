@@ -76,7 +76,7 @@ try {
 
 
 
-pp.put('/chamado/:id', (req,res) => {
+app.put('/chamado/:id', (req,res) => {
   try {
     const id = req.params.id;
     const {novoSolicitante, novoProblema, novaprioridade, novoStatus} = req.body;
