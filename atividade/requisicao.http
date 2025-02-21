@@ -4,13 +4,12 @@ Content-Type: application/json
 
 
 
+
 ### Teste para criar chamados
 POST http://localhost:3000/chamados
 Content-Type: application/json
 
-
 {
-
  "id": "2",
  "solicitante":"Maria",
  "problema": "Sem sinal de rede",
@@ -20,16 +19,39 @@ Content-Type: application/json
 
 
 
+
+
+### Teste chamado pelo ID
+GET http://localhost:3000/chamados/1
+Content-Type: = application/json
+
+ {
+
+
+ }
+
+
 ###
 
 ###Test para editar Chamados
-PUT http://localhost:3000/chamados
+PUT http://localhost:3000/chamados/2
 Content-type: application/json
+
 {
   
-
-
-
+"id": "2",
+"prioridade": "alta",
+"status": "abert0"
 
 
 }
+
+
+###Teste para deletar chamado
+DELETE http://localhost:3000/chamados
+Content-Type: application/json
+{
+  "id": "2"
+
+}
+###

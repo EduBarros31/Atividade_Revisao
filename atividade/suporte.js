@@ -50,52 +50,77 @@ const novoChamado = {id, solicitante, problema, prioridade, status};
 
 
 
+// Consultar Chamado pelo ID
+app.get('/chamados/:id', (req,res) => {
 
+try {
+  const id = req.params.id;
+  const chamado = chamados.find(elemento => elemento.id === id)
+  if(!chamado){
+    return res.status(404).json({msg:"Chamado nao encontrado"})
 
-app.put('/chamados/:id', (req, res) => {
-  try {
-   const id = req.params.id;
-   const { novoSolicitante, novoProblema, novaprioridade, novoStatus } = req.body;
-   const chamados = chamados.find(elemento => elemento.id === parseInt(id));
-
-   if(!id){
-    return res.status(404).json({msg:"Informe um parametro"})
-   }
-   if(!id){
-    return res.status(404).json({msg:"Chamado encontrado"})
-
-   }
-
-   return res.status(200).json({msg:"Chamado atualizado com sucesso"})
-
-  } catch (error) {
-    return resposta.status(500).json({ error: "Erro ao atualizar chamado!" });
-
-    
   }
+
+  res.status(200).json(chamado)
+
+} catch (error) {
+  res.status(500).json({
+   msg: "Erro ao consultar chamado",
+   errr: error.message
+
+
+  })
+}
+
 });
 
 
 
+pp.put('/chamado/:id', (req,res) => {
+  try {
+    const id = req.params.id;
+    const {novoSolicitante, novoProblema, novaprioridade, novoStatus} = req.body;
+
+    const chamado = chamados.find(elemento => elemento.id === id)
+    
+    if(!id){
+      return res.status(404).json({msg:"Informe um campo"})
+
+    }
+    if(!chamado){
+      return res.status(404).json({ error: "Chamado nao encontrado" });
+    }
+    if (chamado){
+      chamado.solicitante = novoSolicitante || chamado.solicitante;
+      chamado.problema = novoProblema || chamado.problema;
+      chamado.prioridade = novaprioridade || chamado.prioridade;
+      chamado.status = novoStatus || chamado.status;
 
 
+      return res.status(200).json({msg: 'Chamado atualizado com sucesso'});
+
+    }
+    
+  } catch (error) {
+    return res.status(500).json({ error: "Erro ao atualizar chamado" });
+
+  }
 
 
+});
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// rota para deletar chamado
+app.delete('./chamados', (req, res) => {
+  try {
+    chamados.length = 0;
+    res.status(200).json({msg:"Chamado Deletado com sucesso"})
+ 
+  } catch (error) {
+    res.status(500).json({msg:" Erro ao deletar Chamado"})
+   
+  }
+ });
 
 
 
