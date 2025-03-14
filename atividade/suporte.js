@@ -10,7 +10,9 @@ const PORT = process.env.PORTA || 3000;
 
 app.use(express.json());
 
-const chamados = []
+
+
+
 
 app.get('/chamados', (req, res) => {
    try {

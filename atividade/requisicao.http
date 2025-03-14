@@ -39,9 +39,7 @@ Content-type: application/json
 
 {
   
-"id": "2",
-"prioridade": "alta",
-"status": "abert0"
+
 
 
 }
@@ -51,7 +49,7 @@ Content-type: application/json
 DELETE http://localhost:3000/chamados
 Content-Type: application/json
 {
-  "id": "2"
+  
 
 }
 ###
