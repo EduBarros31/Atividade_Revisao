@@ -58,6 +58,11 @@ class FuncionarioModel {
         await pool.query(consulta, dados)
     }
 
+
+
+
+
+    
     static async excluirTodos() {
         const consulta = `delete from funcionario`
         await pool.query(consulta)
