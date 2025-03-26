@@ -11,7 +11,7 @@ class FuncionarioController {
               return  resposta.status(400).json({mensagem:"Todos os campos devem ser fornecidos!"})
             }
             const novoFuncionario = await FuncionarioModel.criar(matricula, nome, telefone)
-            resposta.status(201).json({mensagem:" Funcionario criado com sucesso",aluno: novoFuncionario})
+            resposta.status(201).json({mensagem:" Funcionario criado com sucesso",funcionario: novoFuncionario})
         } catch (error) {
             resposta.status(500).json({mensagem:"Erro ao criar o Funcionario!", erro: error.message})
         }
@@ -32,7 +32,7 @@ class FuncionarioController {
             if(!FuncionarioAtualizado){
                 return resposta.status(400).json({menssagem:"Aluno não encontrado"})
             }
-           resposta.status(200).json({mensagem:"Funcionario atualizado com sucesso", aluno: alunoAtualizado})
+           resposta.status(200).json({mensagem:"Funcionario atualizado com sucesso", aluno: FuncionarioAtualizado})
         } catch (error) {
            resposta.status(500).json({mensagem: "Erro ao Editar funcionario ", erro: error.message})
         }
@@ -41,11 +41,11 @@ class FuncionarioController {
 
     static async listarTodos(requisicao, resposta){
         try {
-            const funcionarios = await FuncionarioModel.listar()
-            if(funcionarios.length === 0){
+            const funcionario = await FuncionarioModel.listar()
+            if(funcionario.length === 0){
                 return resposta.status(400).json({mensagem:"Não existe funcionarios a serem exibidos!"})
             }
-            resposta.status(200).json(funcionarios)
+            resposta.status(200).json(funcionario)
         } catch (error) {
             resposta.status(500).json({mensagem:"Erro ao listar os funcionarios!", erro: error.message})
         }

@@ -9,11 +9,10 @@ class ClienteModel {
 
 
     static async criar(nome,telefone,email) {
-      const dados = [nome,telefone,email]
-      const consulta = `insert into cliente(nome,telefone,email) values($1, $2, $3) returning *`
-      const novoCliente = await pool.query(consulta,dados)
-      return novoCliente.rows 
-
+        const dados = [nome,telefone,email]
+        const consulta = `insert into cliente (nome,telefone,email) values ($1,$2,$3) returning *`
+        const novoCliente = await pool.query(consulta,dados)
+        return novoCliente.rows
 
     }
 
@@ -46,10 +45,14 @@ class ClienteModel {
   
     
       static async listarPorID(id) {
-        const dados = [id]
-        const consulta = ` select * from cliente where ID = $1 `
-        const cliente = await pool.query(consulta,dados)
-        return cliente.rows 
+       try {
+        const consulta = `SELECT * FROM cliente WHERE id = $1`;
+        const cliente = await pool.query(consulta, [id]);
+        return cliente.rows;    
+       
+        } catch (error) {
+          console.error(error.message)
+        }
   
   
       }

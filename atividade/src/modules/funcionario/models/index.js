@@ -6,7 +6,7 @@ class FuncionarioModel {
 
     static async criar(matricula,nome,telefone) {
       const dados = [matricula,nome,telefone]
-      const consulta = `insert into funcionario(matricula,nome,telefone) values($1, $2, $3, $4) returning *`
+      const consulta = `insert into funcionario(matricula,nome,telefone) values($1, $2, $3) returning *`
       const novoFuncionario = await pool.query(consulta,dados)
       return novoFuncionario.rows 
 
@@ -19,7 +19,7 @@ class FuncionarioModel {
     static async listar() {
       
         const consulta = `select * from funcionario`
-        const novoFuncionario = await pool.query(consulta,dados)
+        const novoFuncionario = await pool.query(consulta)
         return novoFuncionario.rows 
   
   
@@ -30,7 +30,7 @@ class FuncionarioModel {
 
     static async editar(matricula,nome,telefone) {
         const dados = [matricula,nome,telefone]
-        const consulta = `insert into funcionario(matricula,nome,telefone) values($1, $2, $3, $4) returning *`
+        const consulta = `update funcionario set nome $2, telefone $3 where matricula= $1 returning *`
         const FuncionarioAtualizado= await pool.query(consulta,dados)
         return FuncionarioAtualizado.rows 
   
